@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'Christmas';
+    src: url("Assets/font/christmabet.ttf") format("truetype")
+}
+@font-face {
+    font-family: 'Christmas2';
+    src: url("Assets/font/PWHappyChristmas.ttf") format("truetype")
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    min-height: 100vh;
+    cursor: url("Assets/cursors/snowflake-cursor.cur") , auto;
+}
+body {
+    margin:0;
+    background: radial-gradient(#de2f32,#3D2200);
+}
+.mainsf {
+    margin-top: -75px;
+    margin-left: 21px;
+    height: 80px;
+    width:80px;
+    position: absolute;
+    transition: transform 100ms ease-in-out;
+}
+.page-title {
+    color:rgb(20,107,58);
+    font-family: 'Christmas' , serif;
+    font-weight: normal;
+    text-align: center;
+    font-size: 6em;
+
+}
+.game-info-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+}
+.game-info {
+ font-family:'Christmas2' ;
+  color: #fff ;
+  font-size:3em;
+}
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-gap:10px;
+    margin:50px;
+    justify-content: center;
+    perspective: 500px;
+}
+.card {
+    position: relative;
+    width:125px;
+    height: 175px; 
+    backface-visibility: hidden;
+}
+.card:hover {
+    cursor: url("Assets/cursors/red-christmas-ball-cursor.cur"),auto;
+}
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    border-width:1px;
+    border-style:solid;
+    overflow: hidden;
+    transition: transform 500ms ease-in-out;
+}
+.card.visible .card-back{
+    transform: rotateY(-180deg);
+}
+.card.visible .card-front{
+    transform: rotateY(0);
+}
+.card.matched .card-value {
+    animation: dance 1s linear infinite 500ms;
+}
+.overlay-text {
+   display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    justify-content: center;
+    align-items: center;
+    z-index:10 ;
+    color: #F8CF40;
+    font-family: "Christmas" , serif;
+
+}
+.start-font {
+    font-size: 20px;
+}
+.overlay-text-small {
+    font-size: 0.3em;
+}
+.overlay-text.visible {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards ;
+}
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.8);
+        font-size: 10em;
+    }
+}
+@keyframes dance {
+    0% , 100% {
+        transform:rotate(0);
+    }
+    25%{
+        transform: rotate(-30deg);
+    }
+    75% {
+        transform: rotate(30deg);
+    }
+}
+.card-back {
+    background-color: rgb(153,219,254) ;
+    border-color: #fff;
+}
+.card-front {
+    background-color: #fff;
+    border-color:rgb(153,219,254) ;
+    transform: rotateY(180deg);
+}
+.card-value {
+    height: 90px;
+    width:80px;
+    transition: transform 100ms ease-in-out;
+    transform: scale(0.9);
+}
+.card-front:hover .card-value {
+    transform: scale(1);
+}
+
+.snowflake {
+    position: absolute;
+    width: 80px;
+    height: 121px;
+    transition: width 100ms ease-in-out , height 100ms ease-in-out ;
+}
+.card-front:hover .snowflake {
+    width: 75px;
+    height:75px;
+}
+.top-left
+{
+    left:0;
+    top:0;
+}
+.top-right {
+    top:0;
+    right:0;
+    transform:scale(-1,1);
+}
+.bottom-left {
+    transform: scale(1,-1);
+    bottom:0;
+    left:0;
+}
+.bottom-right {
+    transform: scale(-1,-1); 
+    bottom:0;
+    right:0;
+}
+.mainsf {
+    align-self: flex-start;
+    top:119px;
+    right:22px;
+    transition: transform 1.5s ease-in-out;
+}
+.card-back:hover .mainsf {
+    transform:rotate(360deg) ;
+    
+}
+@media (max-width: 600px) {
+    .game-container {
+        grid-template-columns: repeat(2,auto);
+    }
+    .game-info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
